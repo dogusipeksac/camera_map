@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
 class BottomBar extends StatelessWidget {
-  final VoidCallback? onProfileTap;
-  final VoidCallback? onMapTap;
-  final VoidCallback? onCameraTap;
-  final VoidCallback? onFolderTap;
-  final VoidCallback? onGridTap;
+  final Widget? galleryWidget;
+  final Widget? mapWidget;
+  final Widget? cameraWidget;
+  final Widget? folderWidget;
+  final Widget? templateWidget;
 
   const BottomBar({
     super.key,
-    this.onProfileTap,
-    this.onMapTap,
-    this.onCameraTap,
-    this.onFolderTap,
-    this.onGridTap,
+    this.galleryWidget,
+    this.mapWidget,
+    this.cameraWidget,
+    this.folderWidget,
+    this.templateWidget,
   });
 
   @override
@@ -26,30 +26,11 @@ class BottomBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          IconButton(
-            onPressed: onProfileTap,
-            icon: const Icon(Icons.account_circle, color: Colors.white),
-          ),
-          IconButton(
-            onPressed: onMapTap,
-            icon: const Icon(Icons.map, color: Colors.white),
-          ),
-          SizedBox(
-            width: 72,
-            height: 72,
-            child: IconButton(
-              onPressed: onCameraTap,
-              icon: const Icon(Icons.camera_alt, color: Colors.white, size: 72),
-            ),
-          ),
-          IconButton(
-            onPressed: onFolderTap,
-            icon: const Icon(Icons.folder_open, color: Colors.white),
-          ),
-          IconButton(
-            onPressed: onGridTap,
-            icon: const Icon(Icons.grid_on, color: Colors.white),
-          ),
+          galleryWidget ?? const SizedBox(width: 48),
+          mapWidget ?? const SizedBox(width: 48),
+          cameraWidget ?? const SizedBox(width: 48),
+          folderWidget ?? const SizedBox(width: 48),
+          templateWidget ?? const SizedBox(width: 48),
         ],
       ),
     );

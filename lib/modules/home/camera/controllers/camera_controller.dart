@@ -26,10 +26,7 @@ class CameraController extends GetxController {
         enableAudio: false,
       );
       await cameraController.initialize();
-
-      final flashController = Get.find<FlashController>();
-      flashController.attachCamera(cameraController);
-
+      Get.find<FlashController>().attachCamera(cameraController);
       isCameraReady.value = true;
     } catch (e) {
       isCameraReady.value = false;

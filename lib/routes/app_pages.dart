@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import '../modules/camera/bindings/camera_binding.dart';
-import '../modules/camera/views/camera_screen.dart';
+import '../modules/home/camera/bindings/camera_binding.dart';
+import '../modules/home/camera/views/camera_screen.dart';
 import '../modules/permission/bindings/permission_binding.dart';
 import '../modules/permission/views/permission_view.dart';
 import 'app_routes.dart';

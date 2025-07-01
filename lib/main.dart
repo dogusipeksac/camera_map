@@ -30,8 +30,8 @@ class MyApp extends StatelessWidget {
 
       // ✅ Dil desteği ekle
       translations: AppTranslations(),
-      locale: const Locale('en', 'US'),
-      fallbackLocale: const Locale('en', 'US'),
+      locale: const Locale('tr', 'TR'),
+      fallbackLocale: const Locale('tr', 'TR'),
 
       // ✅ Routing ayarları
       getPages: AppPages.pages,

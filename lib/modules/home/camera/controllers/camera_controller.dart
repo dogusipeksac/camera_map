@@ -5,15 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+import '../../topbar/flash/controller/flash_controller.dart';
+
 class CameraController extends GetxController {
   late cam.CameraController cameraController;
   RxBool isCameraReady = false.obs;
-
-  final RxDouble aspectRatio = (6 / 9).obs;
-
-  void setAspectRatio(double ratio) {
-    aspectRatio.value = ratio;
-  }
 
   @override
   void onInit() {
@@ -22,14 +18,23 @@ class CameraController extends GetxController {
   }
 
   Future<void> initCamera() async {
-    final cameras = await cam.availableCameras();
-    cameraController = cam.CameraController(
-      cameras.first,
-      cam.ResolutionPreset.high,
-      enableAudio: false,
-    );
-    await cameraController.initialize();
-    isCameraReady.value = true;
+    try {
+      final cameras = await cam.availableCameras();
+      cameraController = cam.CameraController(
+        cameras.first,
+        cam.ResolutionPreset.high,
+        enableAudio: false,
+      );
+      await cameraController.initialize();
+
+      final flashController = Get.find<FlashController>();
+      flashController.attachCamera(cameraController);
+
+      isCameraReady.value = true;
+    } catch (e) {
+      isCameraReady.value = false;
+      Get.snackbar("Camera Error", "Camera init failed: $e");
+    }
   }
 
   Future<String?> takePictureAndSaveLocally(

@@ -2,8 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-import '../../controllers/camera_controller.dart' as my;
-import '../../component/info_overlay.dart';
+import '../../camera/controllers/camera_controller.dart' as my;
 
 class PhotoGenerate extends StatelessWidget {
   const PhotoGenerate({super.key});

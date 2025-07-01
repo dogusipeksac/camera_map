@@ -1,11 +1,13 @@
-import 'package:camera_map/modules/camera/views/photogenerate/photo_generate.dart';
-import 'package:camera_map/modules/camera/views/topbar/top_bar.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../banner/ad_banner_widget.dart';
+import '../../bottombar/bottom_bar.dart';
+import '../../bottombar/photogenerate/photo_generate.dart';
+import '../../topbar/top_bar.dart';
 import '../controllers/camera_controller.dart' as my;
-import 'banner/ad_banner_widget.dart';
-import 'bottombar/bottom_bar.dart';
+
 
 class CameraScreen extends StatelessWidget {
   const CameraScreen({super.key});

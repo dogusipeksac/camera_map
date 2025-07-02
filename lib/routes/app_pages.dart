@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import '../modules/home/camera/bindings/camera_binding.dart';
 import '../modules/home/camera/views/camera_screen.dart';
+import '../modules/home/topbar/settings/binding/settings_binding.dart';
+import '../modules/home/topbar/settings/view/settings_page.dart';
 import '../modules/permission/bindings/permission_binding.dart';
 import '../modules/permission/views/permission_view.dart';
 import 'app_routes.dart';
@@ -18,6 +20,11 @@ class AppPages {
       name: Routes.camera,
       page: () => const CameraScreen(),
       binding: CameraBinding(),
+    ),
+    GetPage(
+      name: Routes.settings,
+      page: () => const SettingsPage(),
+      binding: SettingsBinding(),
     ),
   ];
 }

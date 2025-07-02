@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class AdBannerWidget extends StatelessWidget {
   const AdBannerWidget({super.key});
@@ -11,8 +12,11 @@ class AdBannerWidget extends StatelessWidget {
       width: double.infinity,
       alignment: Alignment.center,
       child: Text(
-        '📢 This is a banner ad',
-        style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+        'banner_text'.tr,
+        style: const TextStyle(
+          fontWeight: FontWeight.bold,
+          color: Colors.black,
+        ),
       ),
     );
   }

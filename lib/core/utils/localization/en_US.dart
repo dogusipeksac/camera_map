@@ -1,4 +1,12 @@
 final Map<String, String> enUS = {
+  'settings_title': 'Settings',
+  'watermark': 'Watermark',
+  'general': 'General',
+  'more_apps': 'More Apps',
+  'rate_app': 'Rate App',
+  'share_app': 'ShareApp',
+  'privacy_policy': 'Privacy Policy',
+  'terms_conditions': 'Terms & Conditions',
   'access_title': 'We need some access!',
   'access_description':
   'You need to grant access to the device camera, Photo Library and Location to take photos or record video',
@@ -10,4 +18,5 @@ final Map<String, String> enUS = {
   'gallery_desc': 'App needs access to your photo library for browse your album.',
   'location_city': 'Istanbul, Türkiye',
   'saved_title': 'Saved',
+  'banner_text': '📢 This is a banner ad',
 };

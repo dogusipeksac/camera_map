@@ -1,3 +1,4 @@
+import 'package:camera_map/modules/home/topbar/filenameformat/file_name_customize_view.dart';
 import 'package:get/get.dart';
 import '../modules/home/bottombar/template/binding/template_binding.dart';
 import '../modules/home/bottombar/template/template_page.dart';
@@ -5,6 +6,7 @@ import '../modules/home/camera/bindings/camera_binding.dart';
 import '../modules/home/camera/views/camera_screen.dart';
 import '../modules/home/bottombar/folder/folder_binding.dart';
 import '../modules/home/bottombar/folder/folder_page.dart';
+import '../modules/home/topbar/filenameformat/binding/file_name_customize_binding.dart';
 import '../modules/home/topbar/settings/binding/settings_binding.dart';
 import '../modules/home/topbar/settings/view/settings_page.dart';
 import '../modules/permission/bindings/permission_binding.dart';
@@ -40,6 +42,11 @@ class AppPages {
       page: () => FolderPage(),
       binding: FolderBinding(),
     ),
+    GetPage(
+      name: Routes.fileName,
+      page: () => const FileNameCustomizeView(),
+      binding: FileNameCustomizeBinding(),
+    )
 
   ];
 }

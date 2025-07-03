@@ -1,3 +1,4 @@
+import 'package:camera_map/modules/home/topbar/filenameformat/controller/file_name_customize_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,6 +13,7 @@ void main() async {
 
   // ✅ Klasör seçimini global olarak saklayacak controller
   Get.put(FolderController(), permanent: true);
+  Get.put(FileNameCustomizeController());
 
   // ✅ İzin kontrolü için controller
   final permissionController = Get.put(PermissionController());
@@ -36,8 +38,8 @@ class MyApp extends StatelessWidget {
 
       // ✅ Çoklu dil desteği
       translations: AppTranslations(),
-      locale: const Locale('en', 'US'),
-      fallbackLocale: const Locale('en', 'US'),
+      locale: const Locale('tr', 'TR'),
+      fallbackLocale: const Locale('tr', 'TR'),
 
       // ✅ GetX rota yönetimi
       getPages: AppPages.pages,

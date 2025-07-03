@@ -24,4 +24,23 @@ final Map<String, String> enUS = {
   'classic_template': 'Classic Template',
   'reporting_template': 'Reporting Template',
   'check_in': 'Check In',
+
+  //FileNameCustomizePage
+  'file_name_title': 'Customize File Name',
+  'file_name_description': 'You can reorder or toggle the parts you want to include in your photo file name.',
+
+  // 🏷️ FileNameFormatController
+  'fileName.dateTime': 'Date & Time',
+  'fileName.numbering': 'Numbering',
+  'fileName.customName': 'Custom Name',
+  'fileName.city': 'City',
+  'fileName.latLong': 'Lat / Long',
+  'fileName.plusCode': 'Plus Code',
+  'fileName.timeZone': 'Time Zone',
+
+
+
+  // FolderPage
+  'folder.title': 'Select Folder',
+  'folder.save_original': 'Save Original Photos',
 };

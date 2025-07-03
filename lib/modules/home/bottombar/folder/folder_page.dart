@@ -10,7 +10,7 @@ class FolderPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Select Folder'),
+        title: Text('folder.title'.tr),
         centerTitle: true,
         leading: const BackButton(),
       ),
@@ -18,7 +18,7 @@ class FolderPage extends StatelessWidget {
         children: [
           Obx(() {
             return SwitchListTile(
-              title: const Text("Save Original Photos"),
+              title: Text('folder.save_original'.tr),
               value: controller.saveOriginalPhotos.value,
               onChanged: controller.toggleSaveOriginal,
             );

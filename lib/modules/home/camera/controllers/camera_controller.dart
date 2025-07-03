@@ -1,12 +1,12 @@
 import 'dart:io';
 import 'package:camera/camera.dart' as cam;
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../../../../core/utils/component/app_snackbar.dart';
+import '../../topbar/filenameformat/controller/file_name_customize_controller.dart';
 import '../../topbar/flash/controller/flash_controller.dart';
-import '../../bottombar/folder/folder_controller.dart'; // seçilen klasör buradan
+import '../../bottombar/folder/folder_controller.dart';
 
 class CameraController extends GetxController {
   late cam.CameraController cameraController;
@@ -28,7 +28,6 @@ class CameraController extends GetxController {
       );
       await cameraController.initialize();
 
-      // flash bağlama güvenli hale getirildi
       if (Get.isRegistered<FlashController>()) {
         Get.find<FlashController>().attachCamera(cameraController);
       }
@@ -44,28 +43,27 @@ class CameraController extends GetxController {
     try {
       final cam.XFile file = await controller.takePicture();
 
-      // ✅ Varsayılan klasör (fallback)
+      // ✅ Kayıt yolu
       String fallbackPath = '/storage/emulated/0/DCIM/MyCameraApp';
-
-      // ✅ Seçilen klasörü al (yoksa fallback kullan)
       String savePath = fallbackPath;
+
       if (Get.isRegistered<FolderController>()) {
         final folderController = Get.find<FolderController>();
         final selected = folderController.selectedFolderPath.value;
-        if (selected.isNotEmpty) {
-          savePath = selected;
-        }
+        if (selected.isNotEmpty) savePath = selected;
       }
 
-      // ✅ Klasörü oluştur
       final Directory saveDir = Directory(savePath);
-      if (!await saveDir.exists()) {
-        await saveDir.create(recursive: true);
+      if (!await saveDir.exists()) await saveDir.create(recursive: true);
+
+      // ✅ Dosya adı formatını al
+      String fileName = "IMG_${DateTime.now().millisecondsSinceEpoch}.jpg"; // fallback
+      if (Get.isRegistered<FileNameCustomizeController>()) {
+        final formatController = Get.find<FileNameCustomizeController>();
+        fileName = formatController.fileName.value;
       }
 
-      final String fileName = 'IMG_${DateTime.now().millisecondsSinceEpoch}.jpg';
       final File newImage = File('${saveDir.path}/$fileName');
-
       await File(file.path).copy(newImage.path);
 
       // 📢 Galeriye bildir

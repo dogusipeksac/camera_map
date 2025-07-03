@@ -24,4 +24,20 @@ final Map<String, String> trTR = {
   'classic_template': 'Klasik Şablon',
   'reporting_template': 'Raporlama Şablonu',
   'check_in': 'Yoklama',
+  'file_name_title': 'Dosya Adını Özelleştir',
+  'file_name_description': 'Fotoğraf dosya adınıza dahil etmek istediğiniz parçaları sıralayabilir veya etkinleştirebilirsiniz.',
+
+
+  // 🏷️ FileNameFormatController
+  'fileName.dateTime': 'Tarih & Saat',
+  'fileName.numbering': 'Numaralandırma',
+  'fileName.customName': 'Özel İsim',
+  'fileName.city': 'Şehir',
+  'fileName.latLong': 'Enlem / Boylam',
+  'fileName.plusCode': 'Plus Kodu',
+  'fileName.timeZone': 'Zaman Dilimi',
+
+  // 📁 FolderPage
+  'folder.title': 'Klasör Seç',
+  'folder.save_original': 'Orijinal Fotoğrafları Kaydet',
 };

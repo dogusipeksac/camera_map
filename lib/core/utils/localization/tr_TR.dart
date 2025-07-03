@@ -19,4 +19,9 @@ final Map<String, String> trTR = {
   'location_city': 'İstanbul, Türkiye',
   'saved_title': 'Kaydedildi',
   'banner_text': '📢 Bu bir reklam alanıdır',
+  'template_title': 'Şablon',
+  'advance_template': 'Gelişmiş Şablon',
+  'classic_template': 'Klasik Şablon',
+  'reporting_template': 'Raporlama Şablonu',
+  'check_in': 'Yoklama',
 };

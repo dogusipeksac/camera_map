@@ -1,11 +1,12 @@
 import 'dart:io';
-
 import 'package:camera/camera.dart' as cam;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+import '../../../../core/utils/component/app_snackbar.dart';
 import '../../topbar/flash/controller/flash_controller.dart';
+import '../../bottombar/folder/folder_controller.dart'; // seçilen klasör buradan
 
 class CameraController extends GetxController {
   late cam.CameraController cameraController;
@@ -26,44 +27,55 @@ class CameraController extends GetxController {
         enableAudio: false,
       );
       await cameraController.initialize();
-      Get.find<FlashController>().attachCamera(cameraController);
+
+      // flash bağlama güvenli hale getirildi
+      if (Get.isRegistered<FlashController>()) {
+        Get.find<FlashController>().attachCamera(cameraController);
+      }
+
       isCameraReady.value = true;
     } catch (e) {
       isCameraReady.value = false;
-      Get.snackbar("Camera Error", "Camera init failed: $e");
+      AppSnackbar.error("Camera init failed: $e");
     }
   }
 
-  Future<String?> takePictureAndSaveLocally(
-    cam.CameraController controller,
-  ) async {
+  Future<String?> takePictureAndSaveLocally(cam.CameraController controller) async {
     try {
       final cam.XFile file = await controller.takePicture();
 
-      final Directory baseDir = Directory(
-        '/storage/emulated/0/Pictures/MyCameraApp',
-      );
-      if (!await baseDir.exists()) {
-        await baseDir.create(recursive: true);
+      // ✅ Varsayılan klasör (fallback)
+      String fallbackPath = '/storage/emulated/0/DCIM/MyCameraApp';
+
+      // ✅ Seçilen klasörü al (yoksa fallback kullan)
+      String savePath = fallbackPath;
+      if (Get.isRegistered<FolderController>()) {
+        final folderController = Get.find<FolderController>();
+        final selected = folderController.selectedFolderPath.value;
+        if (selected.isNotEmpty) {
+          savePath = selected;
+        }
       }
 
-      final String fileName =
-          'IMG_${DateTime.now().millisecondsSinceEpoch}.jpg';
-      final File newImage = File('${baseDir.path}/$fileName');
+      // ✅ Klasörü oluştur
+      final Directory saveDir = Directory(savePath);
+      if (!await saveDir.exists()) {
+        await saveDir.create(recursive: true);
+      }
+
+      final String fileName = 'IMG_${DateTime.now().millisecondsSinceEpoch}.jpg';
+      final File newImage = File('${saveDir.path}/$fileName');
+
       await File(file.path).copy(newImage.path);
 
       // 📢 Galeriye bildir
       const platform = MethodChannel('media_scanner_channel');
       await platform.invokeMethod('scanFile', {'path': newImage.path});
 
-      Get.snackbar(
-        "Saved",
-        "Photo saved to ${newImage.path}",
-        backgroundColor: Colors.white,
-      );
+      AppSnackbar.success("Photo saved to: ${newImage.path}");
       return newImage.path;
     } catch (e) {
-      Get.snackbar("Error", "An error occurred: $e");
+      AppSnackbar.error("Failed to save photo:\n$e");
       return null;
     }
   }

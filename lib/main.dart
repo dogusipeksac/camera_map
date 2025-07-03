@@ -2,20 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'core/utils/localization/translations.dart';
+import 'modules/home/bottombar/folder/folder_controller.dart';
+import 'modules/permission/controllers/permission_controller.dart';
 import 'routes/app_pages.dart';
 import 'routes/app_routes.dart';
-import 'modules/permission/controllers/permission_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // ✅ Controller'ı GetX sistemine dahil et
+  // ✅ Klasör seçimini global olarak saklayacak controller
+  Get.put(FolderController(), permanent: true);
+
+  // ✅ İzin kontrolü için controller
   final permissionController = Get.put(PermissionController());
 
-  // ✅ Tüm izinleri kontrol et
+  // ✅ Gerekli tüm izinler verildiyse kamera ekranına yönlendir
   final allGranted = await permissionController.checkAllPermissions();
 
-  runApp(MyApp(initialRoute: allGranted ? Routes.camera : Routes.permission));
+  runApp(MyApp(
+    initialRoute: allGranted ? Routes.camera : Routes.permission,
+  ));
 }
 
 class MyApp extends StatelessWidget {
@@ -25,19 +31,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Permission Demo',
+      title: 'Camera Map App',
       debugShowCheckedModeBanner: false,
 
-      // ✅ Dil desteği ekle
+      // ✅ Çoklu dil desteği
       translations: AppTranslations(),
       locale: const Locale('en', 'US'),
       fallbackLocale: const Locale('en', 'US'),
 
-      // ✅ Routing ayarları
+      // ✅ GetX rota yönetimi
       getPages: AppPages.pages,
       initialRoute: initialRoute,
 
-      // ✅ Tema
+      // ✅ Tema ayarı
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF4C5EFF)),
         useMaterial3: true,

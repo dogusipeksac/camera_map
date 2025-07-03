@@ -3,6 +3,9 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
 
+
+import '../../../core/utils/component/app_snackbar.dart';
+
 class PermissionController extends GetxController {
   final cameraGranted = false.obs;
   final locationGranted = false.obs;
@@ -11,7 +14,7 @@ class PermissionController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    checkAllPermissions(); // İlk açılışta kontrol
+    checkAllPermissions();
   }
 
   Future<void> toggleCamera(bool value) async {
@@ -19,13 +22,13 @@ class PermissionController extends GetxController {
       final status = await Permission.camera.request();
       cameraGranted.value = status.isGranted;
       if (status.isPermanentlyDenied) {
+        AppSnackbar.error("Camera permission is permanently denied. Open settings.");
         openAppSettings();
       }
     } else {
       openAppSettings();
     }
   }
-
 
   Future<void> toggleLocation(bool value) async {
     if (value) {
@@ -59,17 +62,16 @@ class PermissionController extends GetxController {
     if (status.isGranted) {
       return true;
     } else if (status.isPermanentlyDenied) {
-      Get.snackbar("Permission", "Please allow access from app settings.");
+      AppSnackbar.error("Gallery permission permanently denied. Open settings.");
       openAppSettings();
       return false;
     } else if (status.isDenied) {
-      Get.snackbar("Permission", "Permission is required to access gallery.");
+      AppSnackbar.error("Gallery access is required.");
       return false;
     } else {
       return false;
     }
   }
-
 
   Future<bool> checkAllPermissions() async {
     final camStatus = await Permission.camera.status;

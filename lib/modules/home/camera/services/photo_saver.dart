@@ -5,6 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+import 'package:camera_map/modules/home/bottombar/folder/folder_controller.dart';
+
+import '../../../../core/utils/component/app_snackbar.dart';
+
 Future<void> capturePhotoWithInfo({
   required CameraController cameraController,
   required String locationText,
@@ -26,7 +30,7 @@ Future<void> capturePhotoWithInfo({
     // 📸 Arka plan fotoğrafı
     canvas.drawImage(photoImage, Offset.zero, paint);
 
-    // 📝 Metinleri çizmek için ayarlar
+    // 📝 Metin stilleri
     const double padding = 20;
     const double fontSize = 30;
     final textColor = Colors.white;
@@ -50,13 +54,14 @@ Future<void> capturePhotoWithInfo({
       maxWidth: photoImage.width.toDouble() - (padding * 2),
     );
 
-    // 📦 Arka plan kutusu
+    // 🎨 Arka kutu
     final bgRect = Rect.fromLTWH(
       padding,
       photoImage.height - textPainter.height - padding * 1.5,
       textPainter.width + padding,
       textPainter.height + padding,
     );
+
     final bgPaint = Paint()..color = Colors.black.withOpacity(0.5);
     canvas.drawRRect(
       RRect.fromRectAndRadius(bgRect, const Radius.circular(12)),
@@ -67,7 +72,7 @@ Future<void> capturePhotoWithInfo({
     final textOffset = Offset(bgRect.left + padding / 2, bgRect.top + padding / 2);
     textPainter.paint(canvas, textOffset);
 
-    // 📤 Yeni görseli oluştur
+    // 📤 Yeni fotoğrafı oluştur
     final newImage = await recorder.endRecording().toImage(
       photoImage.width,
       photoImage.height,
@@ -75,19 +80,30 @@ Future<void> capturePhotoWithInfo({
     final byteData = await newImage.toByteData(format: ui.ImageByteFormat.png);
     final Uint8List finalBytes = byteData!.buffer.asUint8List();
 
-    // 💾 Kaydet
-    final directory = Directory('/storage/emulated/0/Pictures/MyCameraApp');
+    // 📁 Kayıt dizinini seç
+    String fallbackPath = '/storage/emulated/0/Pictures/MyCameraApp';
+    String savePath = fallbackPath;
+
+    if (Get.isRegistered<FolderController>()) {
+      final folderController = Get.find<FolderController>();
+      final selected = folderController.selectedFolderPath.value;
+      if (selected.isNotEmpty) {
+        savePath = selected;
+      }
+    }
+
+    final directory = Directory(savePath);
     if (!await directory.exists()) await directory.create(recursive: true);
 
     final filePath = '${directory.path}/IMG_${DateTime.now().millisecondsSinceEpoch}.png';
     final file = File(filePath)..writeAsBytesSync(finalBytes);
 
-    // 🔄 Galeriye bildir
+    // 📤 Galeriye bildir
     const platform = MethodChannel('media_scanner_channel');
     await platform.invokeMethod('scanFile', {'path': file.path});
 
-    Get.snackbar("Saved", "Photo saved with info to $filePath");
+    AppSnackbar.success("Photo saved to:\n$filePath");
   } catch (e) {
-    Get.snackbar("Error", "Failed: $e");
+    AppSnackbar.error("Failed to capture photo:\n$e");
   }
 }

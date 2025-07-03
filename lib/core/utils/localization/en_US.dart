@@ -19,4 +19,9 @@ final Map<String, String> enUS = {
   'location_city': 'Istanbul, Türkiye',
   'saved_title': 'Saved',
   'banner_text': '📢 This is a banner ad',
+  'template_title': 'Template',
+  'advance_template': 'Advance Template',
+  'classic_template': 'Classic Template',
+  'reporting_template': 'Reporting Template',
+  'check_in': 'Check In',
 };

@@ -74,9 +74,7 @@ class FileNameCustomizeView extends GetView<FileNameCustomizeController> {
               );
             }),
           ),
-
           const SizedBox(height: 8),
-
           const AdBannerWidget()
         ],
       ),

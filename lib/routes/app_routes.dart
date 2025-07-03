@@ -5,4 +5,5 @@ abstract class Routes {
   static const template = '/template';
   static const folders = '/folders';
   static const fileName = '/fileName';
+  static const splash = '/splash';
 }

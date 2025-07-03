@@ -1,51 +1,36 @@
-import 'package:camera_map/modules/home/topbar/filenameformat/controller/file_name_customize_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:camera_map/modules/home/topbar/filenameformat/controller/file_name_customize_controller.dart';
+import 'package:camera_map/modules/home/bottombar/folder/folder_controller.dart';
+import 'package:camera_map/modules/permission/controllers/permission_controller.dart';
+import 'package:camera_map/routes/app_pages.dart';
+import 'package:camera_map/routes/app_routes.dart';
+import 'package:camera_map/core/utils/localization/translations.dart';
 
-import 'core/utils/localization/translations.dart';
-import 'modules/home/bottombar/folder/folder_controller.dart';
-import 'modules/permission/controllers/permission_controller.dart';
-import 'routes/app_pages.dart';
-import 'routes/app_routes.dart';
-
-void main() async {
+void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // ✅ Klasör seçimini global olarak saklayacak controller
+  // Global controllerlar
   Get.put(FolderController(), permanent: true);
   Get.put(FileNameCustomizeController());
+  Get.put(PermissionController(), permanent: true);
 
-  // ✅ İzin kontrolü için controller
-  final permissionController = Get.put(PermissionController());
-
-  // ✅ Gerekli tüm izinler verildiyse kamera ekranına yönlendir
-  final allGranted = await permissionController.checkAllPermissions();
-
-  runApp(MyApp(
-    initialRoute: allGranted ? Routes.camera : Routes.permission,
-  ));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final String initialRoute;
-  const MyApp({super.key, required this.initialRoute});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'Camera Map App',
       debugShowCheckedModeBanner: false,
-
-      // ✅ Çoklu dil desteği
       translations: AppTranslations(),
       locale: const Locale('tr', 'TR'),
       fallbackLocale: const Locale('tr', 'TR'),
-
-      // ✅ GetX rota yönetimi
       getPages: AppPages.pages,
-      initialRoute: initialRoute,
-
-      // ✅ Tema ayarı
+      initialRoute: Routes.splash, // 👈 Başlangıç olarak splash
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF4C5EFF)),
         useMaterial3: true,

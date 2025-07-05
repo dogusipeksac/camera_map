@@ -40,4 +40,8 @@ final Map<String, String> trTR = {
   // 📁 FolderPage
   'folder.title': 'Klasör Seç',
   'folder.save_original': 'Orijinal Fotoğrafları Kaydet',
+
+  //LastPhotoDetailView
+  'last_photo_title': 'Son Fotoğraf',
+  'no_photo_found': 'Fotoğraf bulunamadı.',
 };

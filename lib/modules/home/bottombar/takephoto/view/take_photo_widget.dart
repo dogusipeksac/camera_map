@@ -14,9 +14,7 @@ class TakePhotoWidget extends StatelessWidget {
       height: 72,
       child: IconButton(
         onPressed: () async {
-          await controller.takePictureAndSaveLocally(
-            controller.cameraController,
-          );
+          await controller.takePictureInSafeMode();
         },
         icon: const Icon(Icons.camera_alt, color: Colors.white, size: 72),
       ),

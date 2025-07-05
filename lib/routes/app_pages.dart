@@ -1,3 +1,5 @@
+import 'package:camera_map/modules/home/bottombar/gallery/lastphoto/last_photo_detail_binding.dart';
+import 'package:camera_map/modules/home/bottombar/gallery/lastphoto/last_photo_detail_view.dart';
 import 'package:camera_map/modules/home/topbar/filenameformat/file_name_customize_view.dart';
 import 'package:get/get.dart';
 
@@ -54,6 +56,11 @@ class AppPages {
       name: Routes.fileName,
       page: () => const FileNameCustomizeView(),
       binding: FileNameCustomizeBinding(),
+    ),
+    GetPage(
+      name: Routes.lastPhotoDetail,
+      page: () => const LastPhotoDetailView(),
+      binding: LastPhotoDetailBinding(),
     )
   ];
 }

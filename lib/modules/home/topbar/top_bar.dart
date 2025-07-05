@@ -1,20 +1,15 @@
+import 'package:camera_map/modules/home/topbar/top_bar_item_type.dart';
 import 'package:flutter/material.dart';
 
 
 class TopBar extends StatelessWidget {
-  final Widget? aspectRatioWidget;
-  final Widget? filePathWidget;
-  final Widget? settingsWidget;
-  final Widget? flashWidget;
-  final Widget? cameraSwitchWidget;
+  final List<TopBarItemType> items;
+  final Map<TopBarItemType, Widget> widgets;
 
   const TopBar({
     super.key,
-    this.aspectRatioWidget,
-    this.filePathWidget,
-    this.settingsWidget,
-    this.flashWidget,
-    this.cameraSwitchWidget,
+    required this.items,
+    required this.widgets,
   });
 
   @override
@@ -24,13 +19,9 @@ class TopBar extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            aspectRatioWidget ?? const SizedBox(width: 48),
-            flashWidget ?? const SizedBox(width: 48),
-            filePathWidget ?? const SizedBox(width: 48),
-            cameraSwitchWidget ?? const SizedBox(width: 48),
-            settingsWidget ?? const SizedBox(width: 48),
-          ],
+          children: items.map((item) {
+            return widgets[item] ?? const SizedBox(width: 48);
+          }).toList(),
         ),
       ),
     );

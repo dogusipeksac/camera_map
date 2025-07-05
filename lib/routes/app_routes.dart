@@ -6,4 +6,5 @@ abstract class Routes {
   static const folders = '/folders';
   static const fileName = '/fileName';
   static const splash = '/splash';
+  static const lastPhotoDetail = '/lastPhotoDetail';
 }

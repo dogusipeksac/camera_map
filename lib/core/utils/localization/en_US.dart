@@ -43,4 +43,9 @@ final Map<String, String> enUS = {
   // FolderPage
   'folder.title': 'Select Folder',
   'folder.save_original': 'Save Original Photos',
+
+
+  //LastPhotoDetailView
+  'last_photo_title': 'Last Photo',
+  'no_photo_found': 'No photo found.',
 };

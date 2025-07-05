@@ -1,7 +1,7 @@
 import 'package:camera_map/modules/home/banner/ad_banner_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'folder_controller.dart';
+import 'controller/folder_controller.dart';
 
 class FolderPage extends StatelessWidget {
   final FolderController controller = Get.find();

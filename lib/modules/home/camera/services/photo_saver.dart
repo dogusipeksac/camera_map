@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
-import 'package:camera_map/modules/home/bottombar/folder/folder_controller.dart';
+import 'package:camera_map/modules/home/bottombar/folder/controller/folder_controller.dart';
 
 import '../../../../core/utils/component/app_snackbar.dart';
 

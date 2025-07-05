@@ -2,7 +2,7 @@ import 'package:camera_map/modules/home/bottombar/gallery/lastphoto/last_photo_d
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:camera_map/modules/home/topbar/filenameformat/controller/file_name_customize_controller.dart';
-import 'package:camera_map/modules/home/bottombar/folder/folder_controller.dart';
+import 'package:camera_map/modules/home/bottombar/folder/controller/folder_controller.dart';
 import 'package:camera_map/modules/permission/controllers/permission_controller.dart';
 import 'package:camera_map/routes/app_pages.dart';
 import 'package:camera_map/routes/app_routes.dart';

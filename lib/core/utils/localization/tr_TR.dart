@@ -44,4 +44,16 @@ final Map<String, String> trTR = {
   //LastPhotoDetailView
   'last_photo_title': 'Son Fotoğraf',
   'no_photo_found': 'Fotoğraf bulunamadı.',
+
+  //CameraController
+  'no_camera_found': 'Kamera bulunamadı',
+  'camera_init_failed': 'Kamera başlatılamadı: :error',
+  'camera_not_ready': 'Kamera hazır değil',
+  'photo_saved': 'Fotoğraf kaydedildi: :path',
+  'take_picture_failed': 'Fotoğraf çekilemedi: :error',
+
+  // PermissionController
+  'camera_perm_denied_permanently': 'Kamera izni kalıcı olarak reddedildi. Ayarları açın.',
+  'gallery_perm_denied_permanently': 'Galeri izni kalıcı olarak reddedildi. Ayarları açın.',
+  'gallery_access_required': 'Galeri erişimi gerekli.',
 };

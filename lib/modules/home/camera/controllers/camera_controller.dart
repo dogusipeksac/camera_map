@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import '../../../../core/utils/component/app_snackbar.dart';
 import '../../topbar/filenameformat/controller/file_name_customize_controller.dart';
 import '../../topbar/flash/controller/flash_controller.dart';
-import '../../bottombar/folder/folder_controller.dart';
+import '../../bottombar/folder/controller/folder_controller.dart';
 
 class CameraController extends GetxController {
   late cam.CameraController cameraController;
@@ -25,13 +25,14 @@ class CameraController extends GetxController {
     try {
       final cameras = await cam.availableCameras();
       if (cameras.isEmpty) {
-        AppSnackbar.error("No camera found");
+        AppSnackbar.error('no_camera_found'.tr);
         return;
       }
 
+      // 📸 En yüksek çözünürlüğü kullan
       cameraController = cam.CameraController(
         cameras.first,
-        cam.ResolutionPreset.high,
+        cam.ResolutionPreset.max,
         enableAudio: false,
       );
 
@@ -44,13 +45,13 @@ class CameraController extends GetxController {
       isCameraReady.value = true;
     } catch (e) {
       isCameraReady.value = false;
-      AppSnackbar.error("Camera init failed: $e");
+      AppSnackbar.error('camera_init_failed'.trParams({'error': '$e'}));
     }
   }
 
   Future<void> takePictureInSafeMode() async {
     if (!isCameraReady.value || !cameraController.value.isInitialized) {
-      AppSnackbar.error("Camera not ready");
+      AppSnackbar.error('camera_not_ready'.tr);
       return;
     }
 
@@ -86,7 +87,7 @@ class CameraController extends GetxController {
       const platform = MethodChannel('media_scanner_channel');
       await platform.invokeMethod('scanFile', {'path': newImage.path});
 
-      AppSnackbar.success("Photo saved to: ${newImage.path}");
+      AppSnackbar.success('photo_saved'.trParams({'path': newImage.path}));
 
       // 📌 Küçük bir gecikme ver → sistemin dosyayı tanıması için
       await Future.delayed(const Duration(milliseconds: 500));
@@ -99,7 +100,7 @@ class CameraController extends GetxController {
       galleryController.setTakenPhoto(photoFile);
 
     } catch (e) {
-      AppSnackbar.error("Failed to take picture: $e");
+      AppSnackbar.error('take_picture_failed'.trParams({'error': '$e'}));
     } finally {
       isTakingPicture.value = false;
     }

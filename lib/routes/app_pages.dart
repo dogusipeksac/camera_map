@@ -3,7 +3,7 @@ import 'package:camera_map/modules/home/bottombar/gallery/lastphoto/last_photo_d
 import 'package:camera_map/modules/home/topbar/filenameformat/file_name_customize_view.dart';
 import 'package:get/get.dart';
 
-import '../modules/home/bottombar/folder/folder_binding.dart';
+import '../modules/home/bottombar/folder/binding/folder_binding.dart';
 import '../modules/home/bottombar/folder/folder_page.dart';
 import '../modules/home/bottombar/template/binding/template_binding.dart';
 import '../modules/home/bottombar/template/template_page.dart';

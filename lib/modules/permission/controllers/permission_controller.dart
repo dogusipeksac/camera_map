@@ -22,7 +22,7 @@ class PermissionController extends GetxController {
       final status = await Permission.camera.request();
       cameraGranted.value = status.isGranted;
       if (status.isPermanentlyDenied) {
-        AppSnackbar.error("Camera permission is permanently denied. Open settings.");
+        AppSnackbar.error('camera_perm_denied_permanently'.tr);
         openAppSettings();
       }
     } else {
@@ -62,11 +62,11 @@ class PermissionController extends GetxController {
     if (status.isGranted) {
       return true;
     } else if (status.isPermanentlyDenied) {
-      AppSnackbar.error("Gallery permission permanently denied. Open settings.");
+      AppSnackbar.error('gallery_perm_denied_permanently'.tr);
       openAppSettings();
       return false;
     } else if (status.isDenied) {
-      AppSnackbar.error("Gallery access is required.");
+      AppSnackbar.error('gallery_access_required'.tr);
       return false;
     } else {
       return false;

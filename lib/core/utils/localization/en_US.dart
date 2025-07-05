@@ -48,4 +48,21 @@ final Map<String, String> enUS = {
   //LastPhotoDetailView
   'last_photo_title': 'Last Photo',
   'no_photo_found': 'No photo found.',
+
+
+  //CameraController
+  'no_camera_found': 'No camera found',
+  'camera_init_failed': 'Camera init failed: :error',
+  'camera_not_ready': 'Camera not ready',
+  'photo_saved': 'Photo saved to: :path',
+  'take_picture_failed': 'Failed to take picture: :error',
+
+  // PermissionController
+  'camera_perm_denied_permanently': 'Camera permission is permanently denied. Open settings.',
+  'gallery_perm_denied_permanently': 'Gallery permission permanently denied. Open settings.',
+  'gallery_access_required': 'Gallery access is required.',
+
+
+  //APP name
+  'app_title': 'MyMapCamera',
 };

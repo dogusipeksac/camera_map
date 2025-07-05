@@ -54,7 +54,7 @@ final Map<String, String> enUS = {
   'no_camera_found': 'No camera found',
   'camera_init_failed': 'Camera init failed: :error',
   'camera_not_ready': 'Camera not ready',
-  'photo_saved': 'Photo saved to: :path',
+  'photo_saved': 'Photo saved',
   'take_picture_failed': 'Failed to take picture: :error',
 
   // PermissionController

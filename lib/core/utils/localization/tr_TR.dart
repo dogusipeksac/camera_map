@@ -49,7 +49,7 @@ final Map<String, String> trTR = {
   'no_camera_found': 'Kamera bulunamadı',
   'camera_init_failed': 'Kamera başlatılamadı: :error',
   'camera_not_ready': 'Kamera hazır değil',
-  'photo_saved': 'Fotoğraf kaydedildi: :path',
+  'photo_saved': 'Fotoğraf kaydedildi',
   'take_picture_failed': 'Fotoğraf çekilemedi: :error',
 
   // PermissionController

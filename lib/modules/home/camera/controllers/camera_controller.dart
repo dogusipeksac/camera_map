@@ -87,7 +87,7 @@ class CameraController extends GetxController {
       const platform = MethodChannel('media_scanner_channel');
       await platform.invokeMethod('scanFile', {'path': newImage.path});
 
-      AppSnackbar.success('photo_saved'.trParams({'path': newImage.path}));
+      AppSnackbar.success('photo_saved'.tr);
 
       // 📌 Küçük bir gecikme ver → sistemin dosyayı tanıması için
       await Future.delayed(const Duration(milliseconds: 500));
@@ -115,4 +115,5 @@ class CameraController extends GetxController {
     }
     super.onClose();
   }
+
 }

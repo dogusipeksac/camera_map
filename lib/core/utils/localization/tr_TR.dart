@@ -56,4 +56,24 @@ final Map<String, String> trTR = {
   'camera_perm_denied_permanently': 'Kamera izni kalıcı olarak reddedildi. Ayarları açın.',
   'gallery_perm_denied_permanently': 'Galeri izni kalıcı olarak reddedildi. Ayarları açın.',
   'gallery_access_required': 'Galeri erişimi gerekli.',
+
+  //MapsController
+  'gps_coordinates': 'GPS Koordinatları',
+  'latitude': 'Enlem',
+  'longitude': 'Boylam',
+  'location': 'Konum',
+  'line_1': 'Satır 1',
+  'line_2': 'Satır 2',
+  'line_3': 'Satır 3',
+  'automatic_text': 'Otomatik',
+
+  //SettingController
+  'play_store_developer_link': 'https://play.google.com/store/apps/developer?id=Doğuş+İpeksaç',
+  'play_store_app_link':'https://play.google.com/store/apps/details?id=com.product.camera_map',
+  'share_link_explain_url':'Bu uygulamaya göz atın: https://play.google.com/store/apps/details?id=com.product.camera_map',
+  'privacy_policy_url':'https://github.com/dogusipeksac/camera_map/blob/master/privacy_policy.html',
+  'terms_policy_url':'https://github.com/dogusipeksac/camera_map/blob/master/terms.html',
+  'url_not_found':'URL açılamadı:'
+
+
 };

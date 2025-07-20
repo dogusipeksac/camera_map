@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 
 import '../modules/home/bottombar/folder/binding/folder_binding.dart';
 import '../modules/home/bottombar/folder/folder_page.dart';
+import '../modules/home/bottombar/map/map_binding.dart';
+import '../modules/home/bottombar/map/map_screen.dart';
 import '../modules/home/bottombar/template/binding/template_binding.dart';
 import '../modules/home/bottombar/template/template_page.dart';
 import '../modules/home/camera/bindings/camera_binding.dart';
@@ -61,6 +63,11 @@ class AppPages {
       name: Routes.lastPhotoDetail,
       page: () => const LastPhotoDetailView(),
       binding: LastPhotoDetailBinding(),
-    )
+    ),
+    GetPage(
+      name: Routes.map,
+      page: () => const MapScreen(),
+      binding: MapBinding(),
+    ),
   ];
 }

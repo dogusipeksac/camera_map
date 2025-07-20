@@ -65,4 +65,22 @@ final Map<String, String> enUS = {
 
   //APP name
   'app_title': 'MyMapCamera',
+
+  //MapsController
+  'gps_coordinates': 'GPS Coordinates',
+  'latitude': 'Latitude',
+  'longitude': 'Longitude',
+  'location': 'Location',
+  'line_1': 'Line 1',
+  'line_2': 'Line 2',
+  'line_3': 'Line 3',
+  'automatic_text': 'Automatic',
+
+  //SettingController
+  'play_store_developer_link': 'https://play.google.com/store/apps/developer?id=Doğuş+İpeksaç',
+  'play_store_app_link':'https://play.google.com/store/apps/details?id=com.product.camera_map',
+  'share_link_explain_url':'Check out this app: https://play.google.com/store/apps/details?id=com.product.camera_map',
+  'privacy_policy_url':'https://github.com/dogusipeksac/camera_map/blob/master/privacy_policy.html',
+  'terms_policy_url':'https://github.com/dogusipeksac/camera_map/blob/master/terms.html',
+  'url_not_found':'URL not opened:'
 };

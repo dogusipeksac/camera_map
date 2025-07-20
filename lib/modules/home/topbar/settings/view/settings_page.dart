@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../../banner/ad_banner_widget.dart';
 import '../controller/settings_controller.dart';
 import 'settings_tile.dart';
+import 'package:share_plus/share_plus.dart';
 
 class SettingsPage extends GetView<SettingsController> {
   const SettingsPage({super.key});
@@ -38,19 +40,53 @@ class SettingsPage extends GetView<SettingsController> {
 
                   // 🔖 Genel başlık
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 16.0, vertical: 8.0),
                     child: Text(
                       'general'.tr,
-                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                      style: const TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 16),
                     ),
                   ),
 
                   // 🔹 Ayar seçenekleri
-                  const SettingsTile(icon: Icons.apps, label: 'more_apps'),
-                  const SettingsTile(icon: Icons.star_border, label: 'rate_app'),
-                  const SettingsTile(icon: Icons.share, label: 'share_app'),
-                  const SettingsTile(icon: Icons.privacy_tip, label: 'privacy_policy'),
-                  const SettingsTile(icon: Icons.description, label: 'terms_conditions'),
+                  SettingsTile(
+                    icon: Icons.apps,
+                    label: 'more_apps',
+                    onTap: () {
+                      // Örnek: Diğer uygulamaları gösteren URL
+                      launchWebPage('play_store_developer_link'.tr);
+                    },
+                  ),
+                  SettingsTile(
+                    icon: Icons.star_border,
+                    label: 'rate_app',
+                    onTap: () {
+                      launchWebPage('play_store_app_link'.tr);
+                    },
+                  ),
+                  SettingsTile(
+                    icon: Icons.share,
+                    label: 'share_app',
+                    onTap: () {
+                      Share.share('share_link_explain_url'.tr);
+                    },
+                  ),
+                  SettingsTile(
+                    icon: Icons.privacy_tip,
+                    label: 'privacy_policy',
+                    onTap: () {
+                      launchWebPage('privacy_policy_url'.tr);
+                    },
+                  ),
+                  SettingsTile(
+                    icon: Icons.description,
+                    label: 'terms_conditions',
+                    onTap: () {
+                      launchWebPage('terms_policy_url'.tr);
+                    },
+                  ),
+
 
                   const SizedBox(height: 16),
                 ],
@@ -64,4 +100,23 @@ class SettingsPage extends GetView<SettingsController> {
       ),
     );
   }
+
+  Future<void> launchWebPage(String url) async {
+    final Uri uri = Uri.parse(url);
+
+    if (await canLaunchUrl(uri)) {
+      await launchUrl(
+        uri,
+        mode: LaunchMode.externalApplication,
+      );
+    } else {
+      throw 'url_not_found'.tr + url;
+    }
+  }
+
 }
+
+
+
+
+

@@ -7,4 +7,5 @@ abstract class Routes {
   static const fileName = '/fileName';
   static const splash = '/splash';
   static const lastPhotoDetail = '/lastPhotoDetail';
+  static const map = '/map';
 }
